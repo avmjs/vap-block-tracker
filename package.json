@@ -49,10 +49,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MetaMask/vap-block-tracker.git"
+    "url": "git+https://github.com/vapjs/vap-block-tracker.git"
   },
   "bugs": {
-    "url": "https://github.com/MetaMask/vap-block-tracker/issues"
+    "url": "https://github.com/vapjs/vap-block-tracker/issues"
   },
-  "homepage": "https://github.com/MetaMask/vap-block-tracker#readme"
+  "homepage": "https://github.com/vapjs/vap-block-tracker#readme"
 }
