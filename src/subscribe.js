@@ -29,8 +29,8 @@ class SubscribeBlockTracker extends BaseBlockTracker {
   async _start () {
     if (this._subscriptionId === undefined || this._subscriptionId === null) {
       try {
-        const blockNumber = await this._call('eth_blockNumber')
-        this._subscriptionId = await this._call('eth_subscribe', 'newHeads', {})
+        const blockNumber = await this._call('vap_blockNumber')
+        this._subscriptionId = await this._call('vap_subscribe', 'newHeads', {})
         this._provider.on('data', this._handleSubData.bind(this))
         this._newPotentialLatest(blockNumber)
       } catch (e) {
@@ -42,7 +42,7 @@ class SubscribeBlockTracker extends BaseBlockTracker {
   async _end () {
     if (this._subscriptionId !== null && this._subscriptionId !== undefined) {
       try {
-        await this._call('eth_unsubscribe', this._subscriptionId)
+        await this._call('vap_unsubscribe', this._subscriptionId)
         delete this._subscriptionId
       } catch (e) {
         this.emit('error', e)
@@ -65,7 +65,7 @@ class SubscribeBlockTracker extends BaseBlockTracker {
   }
 
   _handleSubData (_, data) {
-    if (data.method === 'eth_subscription' && data.params.subscription === this._subscriptionId) {
+    if (data.method === 'vap_subscription' && data.params.subscription === this._subscriptionId) {
       this._newPotentialLatest(data.params.result.number)
     }
   }
